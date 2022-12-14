@@ -1,4 +1,5 @@
-import { TextInput } from '@mantine/core';
+import { Button, Center, TextInput } from '@mantine/core';
+import { IconDatabase } from '@tabler/icons';
 import React from 'react';
 import { useMutateTask } from '../hooks/useMutateTask';
 import useStore from '../store';
@@ -33,6 +34,24 @@ export const TaskForm = () => {
           value={editedTask.title || ''}
           onChange={(e) => update({ ...editedTask, title: e.target.value })}
         />
+        <TextInput
+          mt="md"
+          placeholder="description"
+          value={editedTask.description || ''}
+          onChange={(e) =>
+            update({ ...editedTask, description: e.target.value })
+          }
+        />
+        <Center mt="md">
+          <Button
+            disabled={editedTask.title === ''}
+            leftIcon={<IconDatabase size={14} />}
+            color="cyan"
+            type="submit"
+          >
+            {editedTask.id === 0 ? 'Create' : 'Update'}
+          </Button>
+        </Center>
       </form>
     </div>
   );
